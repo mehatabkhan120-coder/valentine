@@ -6,103 +6,80 @@
 <title>For Masuma 💖</title>
 
 <style>
-    body {
-        margin: 0;
-        height: 100vh;
-        overflow: hidden;
-        background: linear-gradient(135deg, #ff758c, #ff7eb3);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Segoe UI', sans-serif;
-        text-align: center;
-    }
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    overflow: hidden;
+}
 
-    .card {
-        background: rgba(255,255,255,0.95);
-        padding: 35px;
-        border-radius: 25px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        z-index: 2;
-        max-width: 90%;
-    }
+.section { display: none; }
+.section.active { display: block; }
 
-    h1 {
-        color: #e60073;
-        margin-bottom: 20px;
-        font-size: 28px;
-    }
+.card {
+    background: rgba(255,255,255,0.95);
+    padding: 35px;
+    border-radius: 25px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    max-width: 90%;
+}
 
-    h2 {
-        color: #ff3366;
-        margin-bottom: 25px;
-    }
+h1 { color: #e60073; }
+h2 { color: #ff3366; }
 
-    button {
-        font-size: 18px;
-        padding: 12px 30px;
-        border-radius: 30px;
-        border: none;
-        cursor: pointer;
-        margin: 10px;
-    }
+button {
+    font-size: 18px;
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+}
 
-    #yes {
-        background: #ff4d88;
-        color: white;
-    }
+#yes { background: #ff4d88; color: white; }
+#no { background: #ddd; position: absolute; }
 
-    #no {
-        background: #ddd;
-        position: absolute;
-    }
+.nav-btn {
+    background: #ff99bb;
+    color: white;
+}
 
-    .message {
-        display: none;
-        font-size: 20px;
-        color: #e60073;
-        margin-top: 20px;
-    }
+.message {
+    display: none;
+    font-size: 20px;
+    color: #e60073;
+    margin-top: 20px;
+}
 
-    .heart {
-        position: absolute;
-        width: 18px;
-        height: 18px;
-        background: #ff3366;
-        transform: rotate(45deg);
-        animation: float 6s linear infinite;
-    }
+input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
 
-    .heart::before,
-    .heart::after {
-        content: "";
-        width: 18px;
-        height: 18px;
-        background: #ff3366;
-        border-radius: 50%;
-        position: absolute;
-    }
+.error { color: red; margin-top: 10px; }
 
-    .heart::before { top: -9px; left: 0; }
-    .heart::after { left: -9px; top: 0; }
+/* HEART RAIN */
+.heart {
+    position: fixed;
+    top: -20px;
+    font-size: 20px;
+    animation: fall linear infinite;
+    pointer-events: none;
+}
 
-    @keyframes float {
-        from { bottom: -10%; }
-        to { bottom: 110%; }
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+        opacity: 0;
     }
-
-    .burst {
-        position: absolute;
-        font-size: 24px;
-        animation: burst 1s forwards;
-    }
-
-    @keyframes burst {
-        to {
-            transform: translate(var(--x), var(--y)) scale(0);
-            opacity: 0;
-        }
-    }
+}
 </style>
 </head>
 
@@ -112,58 +89,140 @@
     <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
 
-<div class="card">
-    <h2>Hey Masuma 💕</h2>
-    <h1>Will you be my Valentine? 💘</h1>
+<!-- PAGE 1 -->
+<div class="section active" id="page1">
+    <div class="card">
+        <h2>Hey Masuma 💕</h2>
+        <h1>Will you be my Valentine? 💘</h1>
 
-    <button id="yes">Yes 💖</button>
-    <button id="no">No 🙈</button>
+        <button id="yes">Yes 💖</button>
+        <button id="no">No 🙈</button>
 
-    <div class="message" id="msg">
-        💕 I knew you would say YES, Masuma! 💕<br><br>
-        We will meet soon in the future ❤️✨
+        <div class="message" id="msg">
+            💕 I knew you would say YES! 💕<br><br>
+            You make my days brighter ☀️<br>
+            Every moment feels special ✨<br><br>
+            <button class="nav-btn" onclick="goTo('page2')">Our Story 📖</button>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="section" id="page2">
+    <div class="card">
+        <h1>Our Story 💕</h1>
+        <p>
+            It started with a hello 😊<br>
+            Long talks 🌙<br>
+            Something beautiful 🌸
+        </p>
+        <br>
+        <button class="nav-btn" onclick="goTo('page1')">⬅ Back</button>
+        <button class="nav-btn" onclick="goTo('page3')">Future ➡</button>
+    </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="section" id="page3">
+    <div class="card">
+        <h1>Our Future ✨</h1>
+        <p>
+            Laugh together 🤍<br>
+            Travel together ✈️<br>
+            Memories forever 💞
+        </p>
+        <br>
+        <button class="nav-btn" onclick="goTo('secret')">🔐 Secret Page</button>
+        <button class="nav-btn" onclick="goTo('page2')">⬅ Back</button>
+    </div>
+</div>
+
+<!-- SECRET LOGIN -->
+<div class="section" id="secret">
+    <div class="card">
+        <h1>Secret Page 🔒</h1>
+        <p>Enter password 💌</p>
+        <input type="password" id="password" placeholder="Password">
+        <br><br>
+        <button class="nav-btn" onclick="checkPassword()">Unlock 💖</button>
+        <div class="error" id="error"></div>
+        <br>
+        <button class="nav-btn" onclick="goTo('page3')">⬅ Back</button>
+    </div>
+</div>
+
+<!-- SECRET CONTENT -->
+<div class="section" id="secretContent">
+    <div class="card">
+        <h1>💖 My Secret 💖</h1>
+        <p>
+            This heart rain is only for you 🌧️❤️<br><br>
+            No matter where life takes us,<br>
+            you’ll always be special 💫
+        </p>
+        <br>
+        <button class="nav-btn" onclick="goTo('page1')">Home 🏠</button>
     </div>
 </div>
 
 <script>
-    const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
-    const msg = document.getElementById("msg");
+const SECRET_PASSWORD = "18";
+let heartInterval = null;
 
-    noBtn.addEventListener("mouseover", () => {
-        noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
-        noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
-    });
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const msg = document.getElementById("msg");
 
-    yesBtn.addEventListener("click", () => {
-        yesBtn.style.display = "none";
-        noBtn.style.display = "none";
-        msg.style.display = "block";
-        explode();
-    });
+noBtn.addEventListener("mouseover", () => {
+    noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+});
 
-    setInterval(() => {
+yesBtn.addEventListener("click", () => {
+    yesBtn.style.display = "none";
+    noBtn.style.display = "none";
+    msg.style.display = "block";
+});
+
+function goTo(pageId) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+
+    if (pageId !== "secretContent") stopHeartRain();
+}
+
+function checkPassword() {
+    const input = document.getElementById("password").value;
+    const error = document.getElementById("error");
+
+    if (input === SECRET_PASSWORD) {
+        error.textContent = "";
+        goTo('secretContent');
+        startHeartRain();
+    } else {
+        error.textContent = "Wrong password 😅";
+    }
+}
+
+function startHeartRain() {
+    if (heartInterval) return;
+
+    heartInterval = setInterval(() => {
         const heart = document.createElement("div");
         heart.className = "heart";
+        heart.innerHTML = "❤️";
         heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+        heart.style.animationDuration = (3 + Math.random() * 3) + "s";
         document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 7000);
-    }, 300);
 
-    function explode() {
-        for (let i = 0; i < 30; i++) {
-            const b = document.createElement("div");
-            b.className = "burst";
-            b.innerHTML = "❤️";
-            b.style.left = "50%";
-            b.style.top = "50%";
-            b.style.setProperty("--x", `${Math.random()*400-200}px`);
-            b.style.setProperty("--y", `${Math.random()*400-200}px`);
-            document.body.appendChild(b);
-            setTimeout(() => b.remove(), 1000);
-        }
-    }
+        setTimeout(() => heart.remove(), 6000);
+    }, 200);
+}
+
+function stopHeartRain() {
+    clearInterval(heartInterval);
+    heartInterval = null;
+}
 </script>
 
 </body>
